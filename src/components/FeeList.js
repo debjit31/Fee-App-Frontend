@@ -11,7 +11,7 @@ function FeeList() {
 
   const fetchFees = async () => {
     try {
-      const response = await fetch('http://35.174.170.85:61001/api/v1/getFeeList');
+      const response = await fetch('http://52.54.108.56:61001/api/v1/getFeeList');
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -30,7 +30,7 @@ function FeeList() {
 
   const handleDeleteClick = async (id) => {
     try {
-      const response = await fetch(`http://35.174.170.85:61001/api/v1/deleteTransaction/${id}`, {
+      const response = await fetch(`http://52.54.108.56:61001/api/v1/deleteTransaction/${id}`, {
         method: 'DELETE',
       });
 

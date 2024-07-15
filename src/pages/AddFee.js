@@ -10,7 +10,7 @@ function AddFee() {
 
   const handleFormSubmit = async (formData) => {
     try {
-      const response = await fetch('http://35.174.170.85:61001/api/v1/addFee', {
+      const response = await fetch('http://52.54.108.56:61001/api/v1/addFee', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
