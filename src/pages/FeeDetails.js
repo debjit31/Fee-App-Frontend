@@ -11,7 +11,7 @@ function FeeDetails() {
   useEffect(() => {
     const fetchFeeDetails = async () => {
       try {
-        const response = await fetch(`https://52.54.108.56:61001/api/v1/getFeeDetails/${id}`);
+        const response = await fetch(`http://13.127.110.235:61001/api/v1/getFeeDetails/${id}`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -44,7 +44,7 @@ function FeeDetails() {
       <h2>Fee Details for : {fee.studentName}</h2>
       <p><strong>Student Name:</strong> {fee.studentName}</p>
       <p><strong>Month:</strong> {fee.month}</p>
-      <p><strong>Notification Triggered:</strong> {fee.notificationTriggered ? 'Yes' : 'No'}</p>
+      <p><strong>Notification Triggered:</strong> {fee.notificationTriggered === 'Y' ? 'Yes' : 'No'}</p>
       <p><strong>Student Email:</strong> {fee.studentEmail}</p>
       <p><strong>Amount:</strong> {fee.amount}</p>
       <p><strong>Transaction Date:</strong> {fee.transactionDate}</p>
