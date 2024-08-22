@@ -11,7 +11,7 @@ function FeeList() {
 
   const fetchFees = async () => {
     try {
-      const response = await fetch('http://13.127.110.235:61001/api/v1/getFeeList');
+      const response = await fetch('http://172.31.47.93:61001/api/v1/getFeeList');
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
