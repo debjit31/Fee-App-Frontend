@@ -11,7 +11,7 @@ function FeeDetails() {
   useEffect(() => {
     const fetchFeeDetails = async () => {
       try {
-        const response = await fetch(`http://172.31.47.93:61001/api/v1/getFeeDetails/${id}`);
+        const response = await fetch(`http://3.111.84.98:61001/api/v1/getFeeDetails/${id}`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
