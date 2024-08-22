@@ -30,7 +30,7 @@ function FeeList() {
 
   const handleDeleteClick = async (id) => {
     try {
-      const response = await fetch(`http://13.127.110.235:61001/api/v1/deleteTransaction/${id}`, {
+      const response = await fetch(`http://3.111.84.98:61001/api/v1/deleteTransaction/${id}`, {
         method: 'DELETE',
       });
 
