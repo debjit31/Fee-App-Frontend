@@ -34,7 +34,7 @@ const FeeForm = ({ studentId, onClose, onSuccess }) => {
     };
 
     try {
-      await axios.post('https://localhost:443/api/v1/addFeeTransaction', payload);
+      await axios.post('https://43.204.98.7:443/api/v1/addFeeTransaction', payload);
       alert('Fee submitted successfully!');
       onSuccess();
       onClose();

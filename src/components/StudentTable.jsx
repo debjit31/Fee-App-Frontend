@@ -28,7 +28,7 @@ const StudentTable = () => {
   useEffect(() => {
     const fetchStudents = async () => {
       try {
-        const res = await fetch('https://localhost/api/v1/students');
+        const res = await fetch('https://43.204.98.7/api/v1/students');
         const data = await res.json();
         const studentArray = Array.isArray(data) ? data : data.data || [];
         setStudents(studentArray);

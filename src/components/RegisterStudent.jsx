@@ -48,7 +48,7 @@ const RegisterStudent = () => {
     console.log('Submitting Student:', payload);
 
     try {
-      await axios.post('https://localhost/api/v1/addStudent', payload);
+      await axios.post('https://43.204.98.7/api/v1/addStudent', payload);
       alert('Student registered successfully!');
       navigate('/'); // Redirect to home page after success
     } catch (error) {

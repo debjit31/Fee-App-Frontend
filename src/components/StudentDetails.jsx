@@ -16,7 +16,7 @@ const StudentDetails = ({ studentId, onBack }) => {
     if (!studentId) return;
 
     try {
-      const studentRes = await fetch(`https://localhost:443/api/v1/getStudentById/${studentId}`);
+      const studentRes = await fetch(`https://43.204.98.7:443/api/v1/getStudentById/${studentId}`);
       if (!studentRes.ok) throw new Error(`Failed to fetch student details`);
       const studentData = await studentRes.json();
       setStudent(studentData.data || studentData);
@@ -25,7 +25,7 @@ const StudentDetails = ({ studentId, onBack }) => {
     }
 
     try {
-      const txnRes = await fetch(`https://localhost:443/api/v1/getFeesList/${studentId}`);
+      const txnRes = await fetch(`https://43.204.98.7:443/api/v1/getFeesList/${studentId}`);
       if (!txnRes.ok) throw new Error(`Failed to fetch transactions`);
       const txnData = await txnRes.json();
       setTransactions(txnData.data || []);
@@ -49,7 +49,7 @@ const StudentDetails = ({ studentId, onBack }) => {
 
     try {
       // Step 1: Delete transactions
-      const txnRes = await fetch(`https://localhost:443/api/v1/deleteTransactionsByStudentId/${studentId}`, {
+      const txnRes = await fetch(`https://43.204.98.7:443/api/v1/deleteTransactionsByStudentId/${studentId}`, {
         method: 'DELETE',
       });
 
@@ -59,7 +59,7 @@ const StudentDetails = ({ studentId, onBack }) => {
       }
 
       // Step 2: Delete student
-      const studentRes = await fetch(`https://localhost:443/api/v1/deleteStudent/${studentId}`, {
+      const studentRes = await fetch(`https://43.204.98.7:443/api/v1/deleteStudent/${studentId}`, {
         method: 'DELETE',
       });
 
