@@ -1,75 +1,85 @@
-// src/components/FeeForm.js
 import React, { useState } from 'react';
-import { TextField, Button, Box, Typography } from '@mui/material';
+import {
+  TextField, Button, Box, Typography, DialogContent, DialogActions
+} from '@mui/material';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import dayjs from 'dayjs';
+import axios from 'axios';
 
-function FeeForm({ onSubmit }) {
+const FeeForm = ({ studentId, onClose, onSuccess }) => {
   const [formData, setFormData] = useState({
-    name: '',
     amount: '',
-    month: '',
-    email: '',
+    month: dayjs(), // use dayjs for date picker
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleDateChange = (value) => {
+    setFormData(prev => ({ ...prev, month: value }));
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onSubmit(formData);
-    setFormData({ name: '', amount: '', month: '', email: '' }); // Clear form
+
+    const payload = {
+      studentId,
+      amount: formData.amount,
+      month: formData.month.format('MMMM YYYY'), // Example: March 2025
+      date: new Date().toISOString(),
+    };
+
+    try {
+      await axios.post('https://localhost:443/api/v1/addFeeTransaction', payload);
+      alert('Fee submitted successfully!');
+      onSuccess();
+      onClose();
+    } catch (error) {
+      console.error('Error submitting fee:', error);
+      alert('Failed to submit fee.');
+    }
   };
 
   return (
-    <Box component="form" onSubmit={handleSubmit} sx={{ maxWidth: 400, mx: 'auto', mt: 5 }}>
-      <Typography variant="h4" mb={2}>Add Fee</Typography>
-      <TextField
-        label="Student Name"
-        name="studentName"
-        value={formData.studentName}
-        onChange={handleChange}
-        fullWidth
-        required
-        margin="normal"
-      />
-      <TextField
-        label="Amount"
-        name="amount"
-        type="number"
-        value={formData.amount}
-        onChange={handleChange}
-        fullWidth
-        required
-        margin="normal"
-      />
-      <TextField
-        label="Month"
-        name="month"
-        value={formData.month}
-        onChange={handleChange}
-        fullWidth
-        required
-        margin="normal"
-      />
-      <TextField
-        label="Email"
-        name="studentEmail"
-        type="email"
-        value={formData.studentEmail}
-        onChange={handleChange}
-        fullWidth
-        required
-        margin="normal"
-      />
-      <Button type="submit" variant="contained" color="primary" fullWidth sx={{ mt: 2 }}>
-        Submit
-      </Button>
-    </Box>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <form onSubmit={handleSubmit}>
+        <DialogContent>
+          <Box display="flex" flexDirection="column" gap={2}>
+            <Typography variant="h6">Add Fee Payment</Typography>
+
+            <TextField
+              label="Amount"
+              name="amount"
+              type="number"
+              value={formData.amount}
+              onChange={handleChange}
+              fullWidth
+              required
+            />
+
+            <DatePicker
+              views={['year', 'month']}
+              label="Select Fee Month"
+              value={formData.month}
+              onChange={handleDateChange}
+              renderInput={(params) => <TextField {...params} fullWidth required />}
+            />
+          </Box>
+        </DialogContent>
+
+        <DialogActions>
+          <Button onClick={onClose}>Cancel</Button>
+          <Button type="submit" variant="contained" color="primary">
+            Submit
+          </Button>
+        </DialogActions>
+      </form>
+    </LocalizationProvider>
   );
-}
+};
 
 export default FeeForm;

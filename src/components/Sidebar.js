@@ -24,9 +24,11 @@ function Sidebar() {
         <ListItem button component={Link} to="/">
           <ListItemText primary="Home" />
         </ListItem>
-        <ListItem button component={Link} to="/add-fee">
-          <ListItemText primary="Add Fee" />
+
+        <ListItem button component={Link} to="/add-student">
+          <ListItemText primary="Add Student" />
         </ListItem>
+
       </List>
     </Drawer>
   );

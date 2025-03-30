@@ -7,6 +7,7 @@ import FeeDetails from './pages/FeeDetails';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import FeeList from './components/FeeList';
+import RegisterStudent from './components/RegisterStudent';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path="/fee-details/:id" element={<FeeDetails />} />
             <Route path="/" element={<FeeList />} />
             <Route path="/fees" element={<FeeList />} />
+            <Route path="/add-student" element={<RegisterStudent />} />
           </Routes>
         </div>
       </div>
